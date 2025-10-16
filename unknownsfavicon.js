@@ -65,7 +65,7 @@ const unityApp = {
             image.src = 'https://cdn.jsdelivr.net/gh/papamamia/sers@main/TemplateData/portrait-only.png'';
         }
         else if (isLandscapeLocked) {
-            image.src = 'https://cdn.jsdelivr.net/gh/unknownsowner/imagebackground/portrait-only.png';
+            image.src = 'https://github.com/unknownsowner/imagebackground/blob/main/landscape-only.png';
         }
         image.style.display = 'flex';
         image.style.width = '100px';
