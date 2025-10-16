@@ -62,10 +62,10 @@ const unityApp = {
         // Create intuitive image instruction for the user.
         const image = document.createElement('img');
         if (isPortraitLocked) {
-            image.src = 'https://cdn.jsdelivr.net/gh/unknownsowner/imagebackground/portrait-only.png';
+            image.src = 'https://cdn.jsdelivr.net/gh/papamamia/sers@main/TemplateData/portrait-only.png'';
         }
         else if (isLandscapeLocked) {
-            image.src = 'https://cdn.jsdelivr.net/gh/unknownsowner/imagebackground/UnknownsFavicon.png';
+            image.src = 'https://cdn.jsdelivr.net/gh/unknownsowner/imagebackground/portrait-only.png';
         }
         image.style.display = 'flex';
         image.style.width = '100px';
