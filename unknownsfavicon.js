@@ -1,17 +1,3 @@
-(function replaceFavicon() {
-  const newFavicon = "https://cdn.jsdelivr.net/gh/unknownsowner/imagebackground/UnknownsFavicon.png";
-  const oldFavicon = document.querySelector("link[rel~='icon']");
-  if (oldFavicon) {
-    oldFavicon.href = newFavicon;
-  } else {
-    const link = document.createElement("link");
-    link.rel = "shortcut icon";
-    link.href = newFavicon;
-    link.type = "image/png";
-    document.head.appendChild(link);
-  }
-})();
-
 const unityApp = {
 
     applyCommonFixes: function () {
@@ -76,10 +62,10 @@ const unityApp = {
         // Create intuitive image instruction for the user.
         const image = document.createElement('img');
         if (isPortraitLocked) {
-            image.src = 'https://cdn.jsdelivr.net/gh/papamamia/sers@main/TemplateData/portrait-only.png';
+            image.src = 'https://cdn.jsdelivr.net/gh/unknownsowner/imagebackground/UnknownsFavicon.png';
         }
         else if (isLandscapeLocked) {
-            image.src = 'https://cdn.jsdelivr.net/gh/papamamia/sers@main/TemplateData/landscape-only.png';
+            image.src = 'https://cdn.jsdelivr.net/gh/unknownsowner/imagebackground/UnknownsFavicon.png';
         }
         image.style.display = 'flex';
         image.style.width = '100px';
@@ -106,10 +92,13 @@ const unityApp = {
             root.style.display = display;
         }
 
+        // Subscribe to window and document events.
         window.addEventListener("load", updateRotationLock);
         window.addEventListener("resize", updateRotationLock);
         document.addEventListener("readystatechange", updateRotationLock);
         document.addEventListener("DOMContentLoaded", updateRotationLock);
+
+        // Update rotation lock on start.
         updateRotationLock();
     },
 
@@ -145,10 +134,12 @@ const unityApp = {
             let containerWidth = container.clientWidth;
             let containerHeight = container.clientHeight;
 
+            // Apply aspect ratio lock with pixel-perfect size.
             if (containerWidth / containerHeight > aspectRatio) {
                 canvas.style.width = Math.floor(containerHeight * aspectRatio) + "px";
                 canvas.style.height = "100%";
-            } else {
+            }
+            else {
                 canvas.style.width = "100%";
                 canvas.style.height = Math.floor(containerWidth / aspectRatio) + "px";
             }
@@ -157,10 +148,13 @@ const unityApp = {
         function updateAspectRatio() {
             resetAspectRatio();
             if (unityApp.isMobile()) {
+                // Mobile
                 if (isMobileLocked) {
                     recalculateAspectRatio(mobileAspectRatio);
                 }
-            } else {
+            }
+            else {
+                // Desktop
                 if (isDesktopLocked) {
                     recalculateAspectRatio(desktopAspectRatio);
                 }
@@ -168,10 +162,13 @@ const unityApp = {
             centerCanvas();
         }
 
+        // Subscribe to window and document events.
         window.addEventListener("load", updateAspectRatio);
         window.addEventListener("resize", updateAspectRatio);
         document.addEventListener("readystatechange", updateAspectRatio);
         document.addEventListener("DOMContentLoaded", updateAspectRatio);
+
+        // Update aspect ratio on start.
         updateAspectRatio();
     },
 
@@ -193,12 +190,18 @@ const unityApp = {
             productVersion: "1.0.0.0",
             showBanner: (msg, type) => {
                 switch (type) {
-                    case 'error': console.error(msg); break;
-                    default: console.warn(msg); break;
-                     }
+                    case 'error': {
+                        console.error(msg);
+                        break;
+                    }
+                    default: {
+                        console.warn(msg);
+                        break;
+                    }
                 }
             },
         };
+
         // By default Unity keeps WebGL canvas render target size matched with
         // the DOM size of the canvas element (scaled by window.devicePixelRatio)
         // Set this to false if you want to decouple this synchronization from
